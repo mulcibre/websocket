@@ -18,8 +18,8 @@
 		//	message data is passed to this function as parameter
 		ws.messageCallback = function(message){
             //  eliminate script tags
-            message.replace("<script>","");
-            message.replace("</script>","");
+            message = message.replace("<script>","");
+            message = message.replace("</script>","");
             
 			outputs.prepend("<div>" + message + "</div><br/>");			
 		}
