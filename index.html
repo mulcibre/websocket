@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="samNet.js"></script>
+		<script src="samSocket.js"></script>
+		
+		<title>Sams page talks to itself</title>
+	</head>
+	<body>
+		<div>
+			<textarea placeholder="input here" id="inputField" rows="4" cols="50" onkeypress="onTestChange();"></textarea>
+		</div>
+		<div>
+			<button id="samButton">
+				send to Server
+			</button>
+		</div>
+		<div id="outputs">
+			<br/>
+		</div>	
+	</body>
+</html>
