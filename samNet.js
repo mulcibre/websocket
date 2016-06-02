@@ -17,6 +17,10 @@
 		
 		//	message data is passed to this function as parameter
 		ws.messageCallback = function(message){
+            //  eliminate script tags
+            message.replace("<script>","");
+            message.replace("</script>","");
+            
 			outputs.prepend("<div>" + message + "</div><br/>");			
 		}
 	});	
@@ -32,7 +36,7 @@
 			}, 0);
 	}
 	
-	
+	//  Pressing enter will submit contents of textarea
 	window.onTestChange = function(){
 		var key = window.event.keyCode;
 
