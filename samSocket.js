@@ -79,6 +79,9 @@
 		*/
 		_loggedIn = true;
 		flushBuffer();
+        
+        //  change display of connection status
+        $("#connStatusText").text("Connected").css('color', 'green');
     }
 
     function onError(e) {
@@ -91,6 +94,10 @@
         console.log("inside web socket:<onClose>");
         _connected = false;
         _loggedIn = false;
+        
+        //  change display of connection status
+        $("#connStatusText").text("Disconnected").css('color', 'red');
+        
         setTimeout(connect, 10000);
     }
 

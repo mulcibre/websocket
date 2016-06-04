@@ -68,6 +68,9 @@
         $(messageInputDiv).show();
         $(sendButtonDiv).show();
         $(outputs).show();
+        
+        //  Show the current user
+        $("#signInState").text("chatting as " + screenName);
     }
     
 	//  Pressing enter will submit contents of textarea

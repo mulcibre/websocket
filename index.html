@@ -7,22 +7,28 @@
 		<title>Sams page talks to itself</title>
 	</head>
 	<body>
-        <div id="screenNameInputDiv">
-			<input type="text" placeholder="Screen Name" id="inputSNField" onkeypress="screenNameInputListener();">
-		</div>
-        <button id="screenNameButton">
-				Join Chat
-		</button>
-		<div id="inputFieldDiv" style="display: none;">
-			<textarea placeholder="input here" id="inputField" rows="4" cols="50" onkeypress="onTestChange();"></textarea>
-		</div>
-		<div id="samButtonDiv" style="display: none;">
-			<button id="samButton">
-				send to Server
-			</button>
-		</div>
-		<div id="outputs" style="display: none;">
-			<br/>
-		</div>	
+        <div style="float: left;">
+            <div id="screenNameInputDiv">
+                <input type="text" placeholder="Screen Name" id="inputSNField" onkeypress="screenNameInputListener();">
+            </div>
+            <button id="screenNameButton">
+                    Join Chat
+            </button>
+            <div id="inputFieldDiv" style="display: none;">
+                <textarea placeholder="input here" id="inputField" rows="4" cols="50" onkeypress="onTestChange();"></textarea>
+            </div>
+            <div id="samButtonDiv" style="display: none;">
+                <button id="samButton">
+                    send to Server
+                </button>
+            </div>
+            <div id="outputs" style="display: none;">
+                <br/>
+            </div>
+        </div>
+        <div style="float: left; padding-left: 20px">
+            <p id="connStatusText" style="color: red;" >Disconnected</p>
+            <p id="signInState"></p>
+        </div>
 	</body>
 </html>
