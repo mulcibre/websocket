@@ -7,15 +7,21 @@
 		<title>Sams page talks to itself</title>
 	</head>
 	<body>
-		<div>
+        <div id="screenNameInputDiv">
+			<input type="text" placeholder="Screen Name" id="inputSNField" onkeypress="screenNameInputListener();">
+		</div>
+        <button id="screenNameButton">
+				Join Chat
+		</button>
+		<div id="inputFieldDiv" style="display: none;">
 			<textarea placeholder="input here" id="inputField" rows="4" cols="50" onkeypress="onTestChange();"></textarea>
 		</div>
-		<div>
+		<div id="samButtonDiv" style="display: none;">
 			<button id="samButton">
 				send to Server
 			</button>
 		</div>
-		<div id="outputs">
+		<div id="outputs" style="display: none;">
 			<br/>
 		</div>	
 	</body>

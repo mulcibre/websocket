@@ -4,17 +4,38 @@
 
 	var inputField;
 	var samButton;
+    var screenNameButton;
 	var outputs;
-	
+    
+    //  divs to show and hide
+    var snInputDiv;
+    var snButtonDiv;
+    var messageInputDiv;
+    var sendButtonDiv;
+    
+    var screenName;
+    
     $(document).ready(function () {
+        //  get handles to objects on page
         inputField = $("#inputField");
 		samButton = $("#samButton");
+        screenNameButton = $("#screenNameButton")
+        screenNameField = $("#inputSNField")
 		outputs = $("#outputs");
     
+        snInputDiv = $("#screenNameInputDiv");
+        snButtonDiv = $("#screenNameButton");
+        messageInputDiv = $("#inputFieldDiv");
+        sendButtonDiv = $("#samButtonDiv");
+        
 		samButton.click(function(){
 			sendText();
 		});
 		
+        screenNameButton.click(function(){
+			setScreenName();
+		});
+        
 		//	message data is passed to this function as parameter
 		ws.messageCallback = function(message){
             outputs.prepend("<div>" + message + "</div><br/>");			
@@ -22,7 +43,12 @@
 	});	
 	
 	function sendText(){
-			var input = inputField.val();
+            //  prepend screenname and timestamp to message
+            var d = new Date();
+			var input = screenName;
+            input += " (" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ") - ";
+            input += inputField.val();
+            
 			inputField.val("");
 			
 			//	send to server
@@ -32,6 +58,18 @@
 			}, 0);
 	}
 	
+    function setScreenName(){
+        screenName = screenNameField.val();
+        
+        //  hide screenname select div, show messaging divs
+        $(snInputDiv).hide();
+        $(snButtonDiv).hide();
+        
+        $(messageInputDiv).show();
+        $(sendButtonDiv).show();
+        $(outputs).show();
+    }
+    
 	//  Pressing enter will submit contents of textarea
 	window.onTestChange = function(){
 		var key = window.event.keyCode;
@@ -44,5 +82,18 @@
 			return true;
 		}	
 	}
+    
+    //  catch enter key events in the screen name entry
+    window.screenNameInputListener = function(){
+        var key = window.event.keyCode;
+
+		// If the user has pressed enter
+		if (key == 13) {
+			setScreenName();
+		}
+		else {
+			return true;
+		}	
+    }
 	
 }());
