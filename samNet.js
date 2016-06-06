@@ -1,7 +1,8 @@
 (function () {
     var sn = window.samNet = window.samNet || {};
 	var ws = window.webSocket = window.webSocket || {};
-
+	var eu = window.encodingUtils = window.encodingUtils || {};
+	
 	var inputField;
 	var samButton;
     var screenNameButton;
@@ -39,6 +40,8 @@
 		//	message data is passed to this function as parameter
 		ws.messageCallback = function(message){
             message = DOMPurify.sanitize(message);
+			//	convert message to binary array
+			//message = eu.utf8ArrayToString(message);
             outputs.prepend("<div>" + message + "</div><br/>");			
 		}
 	});	
@@ -51,6 +54,9 @@
             input += inputField.val();
             
 			inputField.val("");
+			
+			//	convert input to binary stream
+			//input = eu.stringToUtf8Array(input);
 			
 			//	send to server
 			ws.send(input);
