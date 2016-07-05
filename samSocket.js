@@ -19,6 +19,9 @@
     ws.send = function send(cmd) {
         console.log("writing: " + cmd);
 
+		//	convert message buffer to UINT8 buffer before sending
+		cmd = (new Uint8Array(cmd)).buffer;
+		
         if (_loggedIn) {
             _connection.send(cmd);
         }
@@ -54,7 +57,7 @@
 
         try {
             _connection = new WebSocket(serverUrl);
-            //_connection.binaryType = "arraybuffer";
+            _connection.binaryType = "arraybuffer";
 
             _connection.onopen = onOpen;
             _connection.onmessage = onMessage;
@@ -105,10 +108,13 @@
 		//	when message comes back from server
         console.log("inside web socket: message: " + message);
 		
+		//	convert message back to UINT8Array
+		var data = new Uint8Array(message.data);
+		
 		//	message callback if anyone is listening
 		if(ws.messageCallback)
 		{
-			ws.messageCallback(message.data);
+			ws.messageCallback(data);
 		}
     }
 

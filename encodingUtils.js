@@ -32,7 +32,7 @@ var eu = window.encodingUtils = window.encodingUtils || {};
         return utf8;
     };
 
-    eu.utf8ArrayToString = function () {
+    eu.utf8ArrayToString = function (data) {
         var str = '', i;
 
         for (i = 0; i < data.length; i++) {

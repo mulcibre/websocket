@@ -3,6 +3,12 @@
 	var ws = window.webSocket = window.webSocket || {};
 	var eu = window.encodingUtils = window.encodingUtils || {};
 	
+	//  Client to Server commands
+    const ServerToClientCommand = {
+    message            : 1,
+    screenName         : 2
+    }
+
 	var inputField;
 	var samButton;
     var screenNameButton;
@@ -38,10 +44,12 @@
 		});
         
 		//	message data is passed to this function as parameter
-		ws.messageCallback = function(message){
-            message = DOMPurify.sanitize(message);
+		ws.messageCallback = function(message) {
 			//	convert message to binary array
-			//message = eu.utf8ArrayToString(message);
+			message = eu.utf8ArrayToString(message);
+			
+			message = DOMPurify.sanitize(message);
+			
             outputs.prepend("<div>" + message + "</div><br/>");			
 		}
 	});	
@@ -56,7 +64,7 @@
 			inputField.val("");
 			
 			//	convert input to binary stream
-			//input = eu.stringToUtf8Array(input);
+			input = eu.stringToUtf8Array(input);
 			
 			//	send to server
 			ws.send(input);
